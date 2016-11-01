@@ -1,0 +1,269 @@
+\documentclass[14pt]{beamer} %beamer - typ/šablona prezentace
+
+\usepackage[czech]{babel} %nastavuje české popisky např. u obsahu, referencí, tabulek, obázků 
+\usepackage[utf8]{inputenc} %použito UTF8 kvůli češtině (zvládá prakticky všechny jazyky na světě)
+\usepackage[T1]{fontenc}
+
+\usepackage{lmodern}
+%\usepackage{datetime}
+\usepackage{amssymb} %podpůrná knihovna pro matematické symboly
+\usepackage{enumerate} %umožňuje širší možnosti nastavení enumerate
+
+\usepackage{graphicx} %vkládání obrázků
+\usepackage{hologo} %logo BibTeX
+
+% Themes: http://www.hartwork.org/beamer-theme-matrix/
+\mode<presentation>{\usetheme{Madrid}}
+\usecolortheme{beaver}
+\beamertemplatenavigationsymbolsempty 
+\setbeamertemplate{title page}[default][colsep=0bp,rounded=true]
+\setbeamertemplate{itemize items}{-} %$\circ$
+\setbeamercolor*{item}{fg=black}
+\setbeamertemplate{enumerate item}[default]
+
+\author{J. Páral, V. Boček}
+\institute[paral@robotikabrno.cz]{Pobočka Robotárna - Dům dětí a mládeže Brno, Helceletova\\[0.5cm]}
+\title{Jak a proč používat \LaTeX}
+
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+    \frametitle{Osnova prezentace}
+    \begin{center}
+		\begin{enumerate}[a)]
+			\item Úvod
+			\item Jak na to
+			\item Výhody \LaTeX{\lower .5ex\hbox {U}}
+			\item Texové slabiny
+			\item Prezentace v \LaTeX{\lower .5ex\hbox {U}}
+			\item A kam dál?
+		\end{enumerate}
+    \end{center}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Úvod}
+    \begin{center}
+		\begin{enumerate} %[<+->]
+			\item Co je to \LaTeX %\LaTeX{\lower .5ex\hbox {U}\kern -.125emM}
+				\begin{itemize}
+					\item program pro počítačovou sazbu			
+				\end{itemize}	
+			\item Kdy a proč vznikl
+				\begin{itemize}
+					\item vznikl v 70. letech 20. století
+					\item tvůrce Donald Ervin Knuth
+					\item mnoho chyb ve skriptech :-)
+				\end{itemize}			
+			\item K čemu je primárně určen
+				\begin{itemize}
+					\item primárně vyvinut pro sázení vzorců
+			\end{itemize}
+			\item Kdy se vyplatí jej používat
+				\begin{itemize}
+					\item rozsáhlé a strukturované práce \\
+					(ročníkovky, SOČky, bakálářky, diplomky,...)
+				\end{itemize}
+		\end{enumerate}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Jak na to}
+	Co potřebuji pro zprovoznění Texu:
+    \begin{center}
+		\begin{enumerate} %[<+->]
+			\item Překládací software
+				\begin{itemize}
+					\item \href{https://miktex.org/}{TeX Live} [Windows, MacOsX, Linux]
+					\item MiKTex [Windows]		
+				\end{itemize}	
+			\item Editor zdrojové kódu
+				\begin{itemize}
+					\item Texmaker [free - Windows, MacOsX, Linux]
+					\item Atoms/Visual Studio Code [free - Windows, MacOsX, Linux]
+					\item PSPad [free - Windows]
+					\item Notepad++ [free - Windows]
+				\end{itemize}			
+		\end{enumerate}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Jak na to}
+	Ukázka jednoduchého dokumentu v Texu:
+	\begin{center}
+	\begin{verbatim}
+		\documentclass[12pt]{article}
+		\begin{document}
+		Hello world!
+		$a^2+b^2=c^2$ %math mode 
+		\end{document}
+	\end{verbatim}
+	\end{center}
+	Pozor na češtinu!
+	\verb|\usepackage[utf8]{inputenc}|
+	
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Výhody Texu}
+    \begin{center}
+		\begin{enumerate}
+			\item Jednotné formátování v dokumentu
+			\item Sazba kapitol
+			\item Generování obsahu
+			\item Seznamy obrázků, vzorců, tabulek
+			\item Citace
+			\item Poznámky 
+			\item Odkazy v textu
+			\item Vkládání vzorců
+			\item Číslování stran
+			\item Přenositelnost
+		\end{enumerate}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Výhody Texu}
+    1. Jednotné formátování v dokumentu
+    \begin{center}
+		\begin{itemize}
+			\item používá všude stejný font
+			\item a již v základu jsou pěkné :-)
+			\item nestaráte se o formátování nadpisů,\\
+			odkazů, poznámek, citací
+		\end{itemize}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Výhody Texu}
+    2. Sazba kapitol
+    	       
+    \verb|\titulek[ text do obsahu ]{ nadpis }|
+	\verb|\titulek*{ nadpis } nečíslovaný nadpis|
+    
+    \begin{verbatim}
+		\section{Nadpis první úrovně}
+		\subsection{Nadpis druhé úrovně}
+		\subsubsection{Nadpis třetí úrovně}
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Výhody Texu}
+    3. Generování obsahu
+	
+	Lze provést přidáním jednoho příkazu a následně se aktualizuje při každém přeložení. 
+
+    \begin{verbatim}
+		\tableofcontents
+    \end{verbatim}	    
+
+	\textit{Pozor, většinou je potřeba přeložit dokument dvakrát, pro zobrazení změn v obsahu. Nebo lze automatický volat překladač dvakrát.}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Výhody Texu}
+    4. Seznamy obrázků, vzorců, tabulek
+	
+	Platí to samé jako pro obsah. 
+
+    \begin{verbatim}
+		\listoffigures %seznam obrázků
+		\listoftables %seznam tabulek
+		
+    \end{verbatim}	    
+
+	\textit{Pozor, většinou je potřeba přeložit dokument dvakrát, pro zobrazení změn v obsahu. Lze také překladač volat vždy dvakrát (lze nastavit v Texmakeru) n.}
+    	       
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Výhody Texu}
+    5. Citace
+	
+	Odkaz na citaci
+    \begin{verbatim}
+		\cite{návěstí}
+    \end{verbatim}	        	       
+		
+	
+	Vytvořit citaci
+	\begin{enumerate}[a)]
+		\item pomocí prostředí \textit{thebibliography} 
+			
+		\item nástrojem \hologo{BibTeX}
+		
+	\end{enumerate}
+	
+	Více informací naleznete v dokumentu: \\
+	\textit{ITY6 - Vytváření prezentací}
+\end{frame}		
+
+\begin{frame}[fragile]
+    \frametitle{Výhody Texu}
+    6. Poznámky	
+    
+	Poznámky pod čarou
+    \begin{verbatim}
+		\footnote{text vaší poznámky} 
+    \end{verbatim}	        	       
+
+    \frametitle{Výhody Texu}
+    7. Odkazy v textu
+	
+    \begin{verbatim}
+		\label{návěstí} %identifikuje objekt
+		\ref{návěstí} %odkaz na číslo objektu
+		\pageref{návěští} 
+		%odkaz na číslo stránky s objektem
+    \end{verbatim}	        	       
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+    \frametitle{Výhody Texu}
+    8. Vkládání vzorců (1)
+	
+	Tex je nejmocnější nástroj na práci se vzorci.	
+
+    \begin{verbatim}
+		\begin{eqnarray}
+			3x & = & 6(x-9)+15 \\
+			3x & = & 6x-54+15 \\
+			3x-6x & = & -39 \\
+			3x & = & 39 \\
+			x & = & 13
+		\end{eqnarray}
+    \end{verbatim}	        	       
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Výhody Texu}
+    8. Vkládání vzorců (2)
+	
+	\begin{eqnarray*}
+		3x & = & 6(x-9)+15 \\
+		3x & = & 6x-54+15 \\
+		3x-6x & = & -39 \\
+		3x & = & 39 \\
+		x & = & 13
+	\end{eqnarray*}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Výhody Texu}
+    9. Číslování stran
+\end{frame}
+
+
+
+\end{document}
