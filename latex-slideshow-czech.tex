@@ -474,15 +474,15 @@ $a^2+b^2=c^2$ %math mode
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    11. Sloupce
-	\begin{verbatim}
-		\begin{multicols}{2}
-	Lorem ipsum dolor sit amet, consectetur
-	adipiscing elit. Proin tincidunt mollis 
-	nisl, in finibus dolor accumsan ultricies. 
-	Integer consectetur purus eu lacus sodales.
-		\end{multicols}
-	\end{verbatim}
+    \framesubtitle{11. Sloupce}
+	\begin{lstlisting}[language=bettertex]
+  \begin{multicols}{2}
+    Lorem ipsum dolor sit amet, consectetur
+    adipiscing elit. Proin tincidunt mollis 
+    nisl, in finibus dolor accumsan ultricies. 
+    Integer consectetur purus eu lacus sodales.
+  \end{multicols}
+	\end{lstlisting}
 
 		\begin{multicols}{2}
 	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt mollis nisl, in finibus dolor accumsan ultricies. Integer consectetur purus eu lacus sodales consectetur. 
@@ -493,36 +493,36 @@ $a^2+b^2=c^2$ %math mode
 
 \begin{frame}[fragile]
     \frametitle{"Slabiny"}
-    1. Obrázky
+    \framesubtitle{1. Obrázky}
     \begin{itemize}
     	\item složitější pozicování
     	\item \LaTeX{ }určí, kde obrázek bude
     	\item problémy s překryvem 
     \end{itemize}
-	\begin{verbatim}
-	\begin{figure}[H]
+	\begin{lstlisting}[language=bettertex]
+  \begin{figure}[H]
     \includegraphics[width=220px]{img.png}
-    \caption{Popisek k obrázku}
-	\end{figure}
-	\end{verbatim}	
+    \caption{Popisek k obrazku}
+  \end{figure}
+	\end{lstlisting}	
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{"Slabiny"}
-    2. Tabulky (1)
-	\begin{verbatim}
+    \framesubtitle{2. Tabulky (1)}
+	\begin{lstlisting}[language=bettertex]
 \begin{table}
-\begin{tabular}{l | c | c | c | c }
-Competitor Name & Swim & Cycle & Run & Total \\
-\hline \hline
-John T & 13:04 & 24:15 & 18:34 & 55:53 \\ 
-Norman P & 8:00 & 22:45 & 23:02 & 53:47\\
-Alex K & 14:00 & 28:00 & n/a & n/a\\
-Sarah H & 9:22 & 21:10 & 24:03 & 54:35 
-\end{tabular}
-\caption{Triathlon results}
+  \begin{tabular}{l | c | c | c | c }
+    Competitor Name & Swim & Cycle & Run & Total \\
+    \hline \hline
+    John T & 13:04 & 24:15 & 18:34 & 55:53 \\ 
+    Norman P & 8:00 & 22:45 & 23:02 & 53:47\\
+    Alex K & 14:00 & 28:00 & n/a & n/a\\
+    Sarah H & 9:22 & 21:10 & 24:03 & 54:35 
+  \end{tabular}
+  \caption{Triathlon results}
 \end{table}    
-	\end{verbatim}	
+	\end{lstlisting}	
 \end{frame}
 
 \begin{frame}[fragile]
