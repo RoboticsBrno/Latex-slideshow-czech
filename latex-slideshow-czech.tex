@@ -1,4 +1,4 @@
-\documentclass[14pt]{beamer} % beamer - typ/šablona prezentace
+\documentclass[14pt,t]{beamer} % beamer - typ/šablona prezentace
 
 \usepackage[czech]{babel} % nastavuje české popisky např. u obsahu, referencí, tabulek, obázků 
 \usepackage[utf8]{inputenc} % použito UTF8 kvůli češtině (zvládá prakticky všechny jazyky na světě)
@@ -13,6 +13,24 @@
 \usepackage{hologo} % logo BibTeX
 
 \usepackage{multicol} % pro praci s více sloupci
+
+\usepackage{xcolor}
+\usepackage{listings}
+
+\lstset{basicstyle=\footnotesize\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue},
+  escapeinside={(*@}{@*)},
+  breaklines=true,
+  extendedchars=true,
+  inputencoding=utf8
+}
+
+\lstdefinelanguage{bettertex}{%
+  language     = tex,
+  morekeywords = {begin},
+}
 
 % pro pěkné zobrazení zdroje obrázků
 \definecolor{sourcesclr}{rgb}{.38,.38,.38}
@@ -114,22 +132,35 @@
     \end{center}
 \end{frame}
 
+\begin{frame}[fragile]
+    \frametitle{Jak na to}
+	Instalace Linux:
+	\pause
+	\vspace{5mm}
+	\begin{lstlisting}[language=bash]
+cfdisk /dev/hda && mkfs.xfs /dev/hda1 && mount /dev/hda1 /mnt/gentoo/ && chroot /mnt/gentoo/ && env-update && . /etc/profile && emerge sync && cd /usr/portage && scripts/bootsrap.sh && emerge system && emerge vim && vi /etc/fstab && emerge gentoo-dev-sources && cd /usr/src/linux && make menuconfig && make install modules_install && emerge gnome mozilla-firefox openoffice && emerge grub && cp /boot/grub/grub.conf.sample /boot/grub/grub.conf && vi /boot/grub/grub.conf && grub && init 6
+	\end{lstlisting}
+\end{frame}
+
 
 \begin{frame}[fragile]
     \frametitle{Jak na to}
 	Instalace Linux:
 
-	\begin{verbatim}
-	% Debian/Ubuntu/Xubuntu
-	sudo apt-get install texlive-full
-	\end{verbatim}
-	
-	
-	\begin{verbatim}
-	% Fedora
-	sudo yum install texlive-scheme-full
-	\end{verbatim}
+	\vspace{10mm}
+	\begin{lstlisting}[language=bash]
+# Debian/Ubuntu/Xubuntu
+apt-get install (*@\textcolor{blue}{texlive texlive-lang-czechslovak texmaker}@*)
+	\end{lstlisting}
 
+	\pause
+	\begin{lstlisting}[language=bash]
+# Fedora
+yum install (*@\textcolor{blue}{texlive-scheme-full texmaker}@*)
+	\end{lstlisting}
+	\vspace{10mm}
+
+	\pause
 	Překládáme příkazy
 	\verb|pdflatex JMENO_SOUBORU.tex|
 	
@@ -140,17 +171,16 @@
     \frametitle{Jak na to}
 	Ukázka jednoduchého dokumentu v \LaTeX{\lower .5ex\hbox {U}}:
 	\begin{center}
-	\begin{verbatim}
-		\documentclass[12pt]{article}
-		\begin{document}
-		Hello world!
-		$a^2+b^2=c^2$ %math mode 
-		\end{document}
-	\end{verbatim}
+	\begin{lstlisting}[language=bettertex]
+\documentclass[12pt]{article}
+\begin{document}
+Hello world!
+$a^2+b^2=c^2$ %math mode
+\end{document}
+	\end{lstlisting}
 	\end{center}
 	Pozor na češtinu!
 	\verb|\usepackage[utf8]{inputenc}|
-	
 \end{frame}
 
 \begin{frame}[fragile]
@@ -174,7 +204,7 @@
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    1. Jednotné formátování v dokumentu
+    \framesubtitle{1. Jednotné formátování v dokumentu}
     \begin{center}
 		\begin{itemize}
 			\item používá všude stejný font
@@ -187,63 +217,66 @@
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    2. Sazba stránek a kapitol
-    	     
-    Nová stránka:
-    \begin{verbatim}
-	\newpage % začne na nové stránce
-    \end{verbatim}
+    \framesubtitle{2. Sazba stránek a kapitol}
 
-    Kapitoly:\\   
-    \verb|% popis/ukázka|	       
-    \verb|\titulek[ text do obsahu ]{ nadpis }|
-	\verb|\titulek*{ nadpis } nečíslovaný nadpis|
-    
-    \begin{verbatim}
-		% reálné použití
-		\section{Nadpis první úrovně}
-		\subsection{Nadpis druhé úrovně}
-		\subsubsection{Nadpis třetí úrovně}
-    \end{verbatim}
+    Nová stránka:
+    \begin{lstlisting}[language=bettertex]
+  \newpage % zacne na nove strance
+    \end{lstlisting}
+
+    Kapitoly:\\
+\begin{lstlisting}[language=bettertex]
+  % popis/ukazka
+  \titulek[ text do obsahu ]{ nadpis }
+  \titulek*{ nadpis } necislovany nadpis
+\end{lstlisting}
+
+    \begin{lstlisting}[language=bettertex]
+  % realne pouziti
+  \section{Nadpis prvniq urovne}
+  \subsection{Nadpis druhe urovne}
+  \subsubsection{Nadpis treti urovne}
+    \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    3. Generování obsahu
-	
+    \framesubtitle{3. Generování obsahu}
+
 	Lze provést přidáním jednoho příkazu a následně se aktualizuje při každém přeložení. 
 
-    \begin{verbatim}
-		\tableofcontents
-    \end{verbatim}	    
+    \begin{lstlisting}[language=bettertex]
+  \tableofcontents
+    \end{lstlisting}	    
 
+	\vfill
 	\textit{Pozor, většinou je potřeba přeložit dokument dvakrát, pro zobrazení změn v obsahu. Nebo lze automatický volat překladač dvakrát.}
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    4. Seznamy obrázků, vzorců, tabulek
+    \framesubtitle{4. Seznamy obrázků, vzorců, tabulek}
 	
 	Platí to samé jako pro obsah. 
 
-    \begin{verbatim}
-		\listoffigures %seznam obrázků
-		\listoftables %seznam tabulek
-		
-    \end{verbatim}	    
+    \begin{lstlisting}[language=bettertex]
+  \listoffigures %seznam obrazku
+  \listoftables %seznam tabulek
+    \end{lstlisting}
 
+	\vfill
 	\textit{Pozor, většinou je potřeba přeložit dokument dvakrát, pro zobrazení změn v obsahu. Lze také překladač volat vždy dvakrát (lze nastavit v Texmakeru) n.}
     	       
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    5. Citace
+    \framesubtitle{5. Citace}
 	
 	Odkaz na citaci
-    \begin{verbatim}
-		\cite{návěstí}
-    \end{verbatim}	        	       
+    \begin{lstlisting}[language=bettertex]
+  \cite{jmeno_odkazu}
+    \end{lstlisting}
 		
 	
 	Vytvořit citaci
@@ -253,57 +286,76 @@
 		\item nástrojem \hologo{BibTeX}
 		
 	\end{enumerate}
-	
+
+	\vfill
 	Více informací naleznete v dokumentu: \\
 	\textit{ITY6 - Vytváření prezentací}
 \end{frame}		
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    6. Poznámky	
-    
-	Poznámky pod čarou
-    \begin{verbatim}
-		\footnote{text vaší poznámky} 
-    \end{verbatim}	        	       
+    \framesubtitle{6. Poznámky}	
 
+	Poznámky pod čarou
+    \begin{lstlisting}[language=bettertex]
+  \footnote{text poznamky}
+    \end{lstlisting}
+
+	\pause
+	\vfill
+	...a to je všechno.
+\end{frame}
+
+\begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    7. Odkazy v textu
+    \framesubtitle{7. Odkazy v textu}
 	
-    \begin{verbatim}
-		\label{návěstí} %identifikuje objekt
-		\ref{návěstí} %odkaz na číslo objektu
-		\pageref{návěští} 
-		%odkaz na číslo stránky s objektem
-    \end{verbatim}	        	       
+	\vfill
+    \begin{lstlisting}[language=bettertex]
+  %identifikuje objekt
+  \label{jmeno_odkazu}
+
+  %odkaz na cislo objektu
+  \ref{cislo_odkazu}
+
+  %odkaz na cislo stranky s objektem
+  \pageref{cislo_stranky}
+    \end{lstlisting}
+	\vfill
 \end{frame}
 
 
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    8. Vkládání vzorců (1)
-	
+    \framesubtitle{8. Vkládání vzorců (1)}
+
 	\LaTeX{\lower .5ex\hbox {U}} je nejmocnější nástroj na práci se vzorci.	
 
-    \begin{verbatim}
-			$a^2+b^2=c^2$ 
-			% $ - pro vkládání do textu
-	\end{verbatim}	   
-    $a^2+b^2=c^2$
+    \begin{lstlisting}[language=bettertex]
+  $a^2+b^2=c^2$ 
+  % $ - pro vkladani do textu
+	\end{lstlisting}
 
-    \begin{verbatim}
-		\begin{equation*}
-		\lim_{x \to \infty}\frac{\sin^2 x + 
-		\cos^2 x}{4} = y \nonumber
-		\end{equation*}
-    \end{verbatim}	        	       
+	\vfill
+	\begin{center}
+    $a^2+b^2=c^2$
+	\end{center}
+	\vfill
+
+    \begin{lstlisting}[language=bettertex]
+  \begin{equation*}
+  \lim_{x \to \infty}\frac{\sin^2 x + 
+  \cos^2 x}{4} = y \nonumber
+  \end{equation*}
+    \end{lstlisting}
+	\vfill
 \end{frame}
 
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    8. Vkládání vzorců (2)
+    \framesubtitle{8. Vkládání vzorců (2)}
 	
 	\begin{equation*}
 	\lim_{x \to \infty}\frac{\sin^2 x + \cos^2 x}{4} = y \nonumber
@@ -318,42 +370,42 @@
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    9. Číslování stran \footnote{\url{https://en.wikibooks.org/wiki/LaTeX/Counters}}
-    
+    \framesubtitle{9. Číslování stran \footnote{\url{https://en.wikibooks.org/wiki/LaTeX/Counters}}}
+
     Nastavení a zobrazení čítače stránek na \verb|x|: 
-    \begin{verbatim}	
-	\setcounter{page}{x}
-	\end{verbatim}
+    \begin{lstlisting}[language=bettertex]
+  \setcounter{page}{x}
+	\end{lstlisting}
 	
 	Nastavení a zobrazení čítače stránek od jedné:
-    \begin{verbatim}
-	\setcounter{page}{1}
-	\end{verbatim}
+    \begin{lstlisting}[language=bettertex]
+  \setcounter{page}{1}
+	\end{lstlisting}
 
 	Nastavení způsob sazby čísla stránky:
-    \begin{verbatim}
-	\pagenumbering{styl}
-	\end{verbatim}
-    
+    \begin{lstlisting}[language=bettertex]
+  \pagenumbering{styl}
+	\end{lstlisting}
+
     Nastavení pozice na stránce:
-    \begin{verbatim}
-	\pagestyle{styl}
-	\end{verbatim}
+    \begin{lstlisting}[language=bettertex]
+  \pagestyle{styl}
+	\end{lstlisting}
 
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    10. Odrážky, číslované seznamy (1)
+    \framesubtitle{10. Odrážky, číslované seznamy (1)}
     
     \begin{multicols}{2}
     Odrážky
-    \begin{verbatim}
-		\begin{itemize}
-			\item první odrážka
-			\item druhá odrážka
-		\end{itemize}
-    \end{verbatim}	
+    \begin{lstlisting}[language=bettertex]
+ \begin{itemize}
+   \item prvni odrazka
+   \item druha odrazka
+ \end{itemize}
+    \end{lstlisting}
     
     \begin{itemize}
 		\item první odrážka
@@ -361,12 +413,12 @@
 	\end{itemize}
     
     Číslované seznamy
-    \begin{verbatim}
-		\begin{enumerate}
-			\item první položka
-			\item druhá položka
-		\end{enumerate}
-    \end{verbatim}
+    \begin{lstlisting}[language=bettertex]
+ \begin{enumerate}
+   \item prvni polozka
+   \item druha polozka
+ \end{enumerate}
+    \end{lstlisting}
 		\begin{enumerate}
 			\item první položka
 			\item druhá položka
@@ -377,25 +429,26 @@
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    10. Odrážky, číslované seznamy (2)
+    \framesubtitle{10. Odrážky, číslované seznamy (2)}
         
     Číslované seznamy -- zanořování
-    \begin{verbatim}
-		\begin{enumerate}[a)]
-			\item první položka
-			\begin{enumerate}
-				\item první pod položka
-				\item druhá pod položka
-			\end{enumerate}			
-			\item druhá položka
-		\end{enumerate}
-    \end{verbatim}
+	\vspace{3mm}
+    \begin{lstlisting}[language=bettertex]
+ \begin{enumerate}[a)]
+   \item prvni polozka
+     \begin{enumerate}
+       \item prvni pod polozka
+       \item druha pod polozka
+     \end{enumerate}
+   \item druha polozka
+ \end{enumerate}
+    \end{lstlisting}
 
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    10. Odrážky, číslované seznamy (3)
+    \framesubtitle{10. Odrážky, číslované seznamy (3)}
     
     Číslované seznamy -- zanořování
 		\begin{enumerate}
@@ -536,6 +589,16 @@ Sarah H & 9:22 & 21:10 & 24:03 & 54:35
 \end{frame}
 
 
+\begin{frame}[fragile]
+	\vfill
+    \begin{center}
+        {\huge </latex> }
+
+		\vspace{10mm}
+		Q \& A?
+	\end{center}
+	\vfill
+\end{frame}
 
 
 \end{document}
