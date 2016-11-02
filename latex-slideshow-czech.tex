@@ -14,6 +14,10 @@
 
 \usepackage{multicol} % pro praci s více sloupci
 
+% pro pěkné zobrazení zdroje obrázků
+\definecolor{sourcesclr}{rgb}{.38,.38,.38}
+\newcommand{\srctext}[1]{{\fontsize{7}{9}\selectfont\textcolor{sourcesclr}{#1}}}
+
 % Themes: http://www.hartwork.org/beamer-theme-matrix/
 \mode<presentation>{\usetheme{Madrid}}
 \usecolortheme{beaver}
@@ -59,29 +63,44 @@
 				\begin{itemize}
 					\item vznikl v 70. letech 20. století
 					\item tvůrce Donald Ervin Knuth
-					\item mnoho chyb ve skriptech :-)
 				\end{itemize}			
 			\item K čemu je primárně určen
 				\begin{itemize}
 					\item primárně vyvinut pro sázení vzorců
-			\end{itemize}
+				\end{itemize}
 			\item Kdy se vyplatí jej používat
 				\begin{itemize}
 					\item rozsáhlé a strukturované práce \\
 					(ročníkovky, SOČky, bakálářky, diplomky,...)
 				\end{itemize}
+			\item Proč se vyplatí jej používat
+				\begin{itemize}
+					\item navrhli jej odborníci na typografii
+					\item bezproblémová přenositelnost
+				\end{itemize}	
 		\end{enumerate}
     \end{center}
 \end{frame}
 
+
+\begin{frame}
+    \frametitle{\LaTeX{ }vs Word}
+       
+	\begin{figure}[H]
+        \includegraphics[width=190px]{img/when_use_latex.png}
+        \caption{Kdy se vyplatí použít \LaTeX}
+	\end{figure}
+	    \srctext{Zdroj obrázku: \url{http://www.pinteric.com/miktex.html}}
+\end{frame}
+
 \begin{frame}
     \frametitle{Jak na to}
-	Co potřebuji pro zprovoznění Texu:
+	Co potřebuji pro zprovoznění \LaTeX{\lower .5ex\hbox {U}}:
     \begin{center}
 		\begin{enumerate} %[<+->]
 			\item Překládací software
 				\begin{itemize}
-					\item \href{https://miktex.org/}{TeX Live} [Windows, MacOsX, Linux]
+					\item \href{https://tug.org/texlive/}{TeX Live} [Windows, MacOsX, Linux]
 					\item \href{https://miktex.org/}{MiKTex} [Windows]		
 				\end{itemize}	
 			\item Editor zdrojové kódu
@@ -148,7 +167,7 @@
 			\item Vkládání vzorců
 			\item Číslování stran	
 			\item Odrážky, číslované seznamy
-			\item Přenositelnost
+			\item Sloupce
 		\end{enumerate}
     \end{center}
 \end{frame}
@@ -299,7 +318,7 @@
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    9. Číslování stran \footnote{\href{https://en.wikibooks.org/wiki/LaTeX/Counters}{https://en.wikibooks.org/wiki/LaTeX/Counters}}
+    9. Číslování stran \footnote{\url{https://en.wikibooks.org/wiki/LaTeX/Counters}}
     
     Nastavení a zobrazení čítače stránek na \verb|x|: 
     \begin{verbatim}	
@@ -400,11 +419,141 @@
 
 \end{frame}
 
+\begin{frame}[fragile]
+    \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
+    11. Sloupce
+	\begin{verbatim}
+		\begin{multicols}{2}
+	Lorem ipsum dolor sit amet, consectetur
+	adipiscing elit. Proin tincidunt mollis 
+	nisl, in finibus dolor accumsan ultricies. 
+	Integer consectetur purus eu lacus sodales.
+		\end{multicols}
+	\end{verbatim}
+
+		\begin{multicols}{2}
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt mollis nisl, in finibus dolor accumsan ultricies. Integer consectetur purus eu lacus sodales consectetur. 
+		\end{multicols}
+
+	
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{"Slabiny"}
+    1. Obrázky
+    \begin{itemize}
+    	\item složitější pozicování
+    	\item \LaTeX{ }určí, kde obrázek bude
+    	\item problémy s překryvem 
+    \end{itemize}
+	\begin{verbatim}
+	\begin{figure}[H]
+    \includegraphics[width=220px]{img.png}
+    \caption{Popisek k obrázku}
+	\end{figure}
+	\end{verbatim}	
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{"Slabiny"}
+    2. Tabulky (1)
+	\begin{verbatim}
+\begin{table}
+\begin{tabular}{l | c | c | c | c }
+Competitor Name & Swim & Cycle & Run & Total \\
+\hline \hline
+John T & 13:04 & 24:15 & 18:34 & 55:53 \\ 
+Norman P & 8:00 & 22:45 & 23:02 & 53:47\\
+Alex K & 14:00 & 28:00 & n/a & n/a\\
+Sarah H & 9:22 & 21:10 & 24:03 & 54:35 
+\end{tabular}
+\caption{Triathlon results}
+\end{table}    
+	\end{verbatim}	
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{"Slabiny"}
+    2. Tabulky (2)
+    
+	\begin{itemize}
+		\item jednoduché tabulky lze dělat ručně
+		\item složitější tvořte pomocnými nástroji \footnote{\url{http://www.tablesgenerator.com/}}
+		\item ... nebo vlastními skripty
+	\end{itemize}	    
+    
+\begin{table}
+\begin{tabular}{l | c | c | c | c }
+Competitor Name & Swim & Cycle & Run & Total \\
+\hline \hline
+John T & 13:04 & 24:15 & 18:34 & 55:53 \\ 
+Norman P & 8:00 & 22:45 & 23:02 & 53:47\\
+Alex K & 14:00 & 28:00 & n/a & n/a\\
+Sarah H & 9:22 & 21:10 & 24:03 & 54:35 
+\end{tabular}
+\caption{Triathlon results}
+\end{table}    
+
+\srctext{Zdroj tabulky: \url{https://cs.sharelatex.com/blog/2013/08/14/beamer-series-pt2.html}}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Prezentace \LaTeX{\lower .5ex\hbox {U}}}
+    Právě ji vidíte!
+    
+    Kdy použít:
+    \begin{itemize}
+    	\item chci sázet matematiku nebo zdrojový kód
+    	\item složitější struktura prezentace
+    	\item univerzitní prostředí
+    \end{itemize}
+    
+    Kdy nepoužívat:
+        \begin{itemize}
+    	\item propagační materiály (\LaTeX{}nedělá moc COOL prezentace)
+    	\item krátká prezentace s několika slajdy
+    	\item velké množství obrázků
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{A co dál?} % \LaTeX{\lower .5ex\hbox {U}}
+    
+    
+    Kdy použít:
+    \begin{itemize}
+    	\item \LaTeX{ }lze verzovat\footnote{\href{GitHub}{\url{https://github.com}}}
+    	\item Vyzkoušejte Pandoc\footnote{\url{http://pandoc.org/}} (konvertor dokumentů)
+    	\item \LaTeX{ }jde dobře kombinovat s programováním
+		\begin{itemize}
+	    	 \item Gnuplot\footnote{\url{http://gnuplot.sourceforge.net/}} - skriptové generování grafů
+	    	 \item skript pro generování tabulek
+	   	\end{itemize}		    	
+    \end{itemize}
+
+\end{frame}
+
 
 
 
 \end{document}
 
-	\begin{multicols}{2}
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt mollis nisl, in finibus dolor accumsan ultricies. Integer consectetur purus eu lacus sodales consectetur. Donec fermentum lacinia mi, ac malesuada nisi convallis in. Phasellus aliquam quam elit, hendrerit feugiat nunc pulvinar non.
-	\end{multicols}
+%---------------------------------------------------------------------
+
+\begin{multicols}{2}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt mollis nisl, in finibus dolor accumsan ultricies. Integer consectetur purus eu lacus sodales consectetur. Donec fermentum lacinia mi, ac malesuada nisi convallis in. Phasellus aliquam quam elit, hendrerit feugiat nunc pulvinar non.
+\end{multicols}
+
+\begin{frame}[fragile]
+    \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
+    12. Matice
+
+	\begin{array}{cccc}
+    a^{11} \& a^{12} \& \hdots \& a^{1n} \\
+    a^{21} \& a^{22} \& \hdots \& a^{2n} \\
+    \vdots \& \vdots \& \ddots \& \vdots \\
+    a^{m1} \& a^{m2} \& \hdots \& a^{mn} \\
+	\end{array} 
+\end{frame}
