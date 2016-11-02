@@ -1,16 +1,18 @@
-\documentclass[14pt]{beamer} %beamer - typ/šablona prezentace
+\documentclass[14pt]{beamer} % beamer - typ/šablona prezentace
 
-\usepackage[czech]{babel} %nastavuje české popisky např. u obsahu, referencí, tabulek, obázků 
-\usepackage[utf8]{inputenc} %použito UTF8 kvůli češtině (zvládá prakticky všechny jazyky na světě)
+\usepackage[czech]{babel} % nastavuje české popisky např. u obsahu, referencí, tabulek, obázků 
+\usepackage[utf8]{inputenc} % použito UTF8 kvůli češtině (zvládá prakticky všechny jazyky na světě)
 \usepackage[T1]{fontenc}
 
 \usepackage{lmodern}
 %\usepackage{datetime}
-\usepackage{amssymb} %podpůrná knihovna pro matematické symboly
-\usepackage{enumerate} %umožňuje širší možnosti nastavení enumerate
+\usepackage{amssymb} % podpůrná knihovna pro matematické symboly
+\usepackage{enumerate} % umožňuje širší možnosti nastavení enumerate
 
-\usepackage{graphicx} %vkládání obrázků
-\usepackage{hologo} %logo BibTeX
+\usepackage{graphicx} % vkládání obrázků
+\usepackage{hologo} % logo BibTeX
+
+\usepackage{multicol} % pro praci s více sloupci
 
 % Themes: http://www.hartwork.org/beamer-theme-matrix/
 \mode<presentation>{\usetheme{Madrid}}
@@ -37,7 +39,7 @@
 			\item Úvod
 			\item Jak na to
 			\item Výhody \LaTeX{\lower .5ex\hbox {U}}
-			\item Texové slabiny
+			\item Slabiny
 			\item Prezentace v \LaTeX{\lower .5ex\hbox {U}}
 			\item A kam dál?
 		\end{enumerate}
@@ -80,22 +82,44 @@
 			\item Překládací software
 				\begin{itemize}
 					\item \href{https://miktex.org/}{TeX Live} [Windows, MacOsX, Linux]
-					\item MiKTex [Windows]		
+					\item \href{https://miktex.org/}{MiKTex} [Windows]		
 				\end{itemize}	
 			\item Editor zdrojové kódu
 				\begin{itemize}
-					\item Texmaker [free - Windows, MacOsX, Linux]
-					\item Atoms/Visual Studio Code [free - Windows, MacOsX, Linux]
-					\item PSPad [free - Windows]
-					\item Notepad++ [free - Windows]
+					\item \href{http://www.xm1math.net/texmaker/}{Texmaker} [free - Windows, MacOsX, Linux]
+					\item \href{https://atom.io/}{Atoms} [free - Windows, MacOsX, Linux]
+					\item \href{http://www.pspad.com/cz/}{PSPad} [free - Windows]
+					\item \href{https://notepad-plus-plus.org/}{Notepad++} [free - Windows]
 				\end{itemize}			
 		\end{enumerate}
     \end{center}
 \end{frame}
 
+
 \begin{frame}[fragile]
     \frametitle{Jak na to}
-	Ukázka jednoduchého dokumentu v Texu:
+	Instalace Linux:
+
+	\begin{verbatim}
+	% Debian/Ubuntu/Xubuntu
+	sudo apt-get install texlive-full
+	\end{verbatim}
+	
+	
+	\begin{verbatim}
+	% Fedora
+	sudo yum install texlive-scheme-full
+	\end{verbatim}
+
+	Překládáme příkazy
+	\verb|pdflatex JMENO_SOUBORU.tex|
+	
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Jak na to}
+	Ukázka jednoduchého dokumentu v \LaTeX{\lower .5ex\hbox {U}}:
 	\begin{center}
 	\begin{verbatim}
 		\documentclass[12pt]{article}
@@ -111,25 +135,26 @@
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Výhody Texu}
+    \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
     \begin{center}
 		\begin{enumerate}
 			\item Jednotné formátování v dokumentu
-			\item Sazba kapitol
+			\item Sazba stránek a kapitol
 			\item Generování obsahu
-			\item Seznamy obrázků, vzorců, tabulek
+			\item Seznamy obrázků, tabulek
 			\item Citace
 			\item Poznámky 
 			\item Odkazy v textu
 			\item Vkládání vzorců
-			\item Číslování stran
+			\item Číslování stran	
+			\item Odrážky, číslované seznamy
 			\item Přenositelnost
 		\end{enumerate}
     \end{center}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Výhody Texu}
+    \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
     1. Jednotné formátování v dokumentu
     \begin{center}
 		\begin{itemize}
@@ -142,13 +167,21 @@
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Výhody Texu}
-    2. Sazba kapitol
-    	       
+    \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
+    2. Sazba stránek a kapitol
+    	     
+    Nová stránka:
+    \begin{verbatim}
+	\newpage % začne na nové stránce
+    \end{verbatim}
+
+    Kapitoly:\\   
+    \verb|% popis/ukázka|	       
     \verb|\titulek[ text do obsahu ]{ nadpis }|
 	\verb|\titulek*{ nadpis } nečíslovaný nadpis|
     
     \begin{verbatim}
+		% reálné použití
 		\section{Nadpis první úrovně}
 		\subsection{Nadpis druhé úrovně}
 		\subsubsection{Nadpis třetí úrovně}
@@ -156,7 +189,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Výhody Texu}
+    \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
     3. Generování obsahu
 	
 	Lze provést přidáním jednoho příkazu a následně se aktualizuje při každém přeložení. 
@@ -169,7 +202,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Výhody Texu}
+    \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
     4. Seznamy obrázků, vzorců, tabulek
 	
 	Platí to samé jako pro obsah. 
@@ -185,7 +218,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Výhody Texu}
+    \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
     5. Citace
 	
 	Odkaz na citaci
@@ -207,7 +240,7 @@
 \end{frame}		
 
 \begin{frame}[fragile]
-    \frametitle{Výhody Texu}
+    \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
     6. Poznámky	
     
 	Poznámky pod čarou
@@ -215,7 +248,7 @@
 		\footnote{text vaší poznámky} 
     \end{verbatim}	        	       
 
-    \frametitle{Výhody Texu}
+    \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
     7. Odkazy v textu
 	
     \begin{verbatim}
@@ -229,41 +262,149 @@
 
 
 \begin{frame}[fragile]
-    \frametitle{Výhody Texu}
+    \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
     8. Vkládání vzorců (1)
 	
-	Tex je nejmocnější nástroj na práci se vzorci.	
+	\LaTeX{\lower .5ex\hbox {U}} je nejmocnější nástroj na práci se vzorci.	
 
     \begin{verbatim}
-		\begin{eqnarray}
-			3x & = & 6(x-9)+15 \\
-			3x & = & 6x-54+15 \\
-			3x-6x & = & -39 \\
-			3x & = & 39 \\
-			x & = & 13
-		\end{eqnarray}
+			$a^2+b^2=c^2$ 
+			% $ - pro vkládání do textu
+	\end{verbatim}	   
+    $a^2+b^2=c^2$
+
+    \begin{verbatim}
+		\begin{equation*}
+		\lim_{x \to \infty}\frac{\sin^2 x + 
+		\cos^2 x}{4} = y \nonumber
+		\end{equation*}
     \end{verbatim}	        	       
 \end{frame}
 
 
 \begin{frame}[fragile]
-    \frametitle{Výhody Texu}
+    \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
     8. Vkládání vzorců (2)
 	
-	\begin{eqnarray*}
-		3x & = & 6(x-9)+15 \\
-		3x & = & 6x-54+15 \\
-		3x-6x & = & -39 \\
-		3x & = & 39 \\
-		x & = & 13
-	\end{eqnarray*}
+	\begin{equation*}
+	\lim_{x \to \infty}\frac{\sin^2 x + \cos^2 x}{4} = y \nonumber
+	\end{equation*}	
+	
+	Číslované vzorce \verb|\begin{equation}|:\\
+	\begin{equation*}
+		\int_a^b f(x) \mathrm{d}x = 
+		-\int_b^a f(x) \mathrm{d}x 
+	\end{equation*}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Výhody Texu}
-    9. Číslování stran
+    \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
+    9. Číslování stran \footnote{\href{https://en.wikibooks.org/wiki/LaTeX/Counters}{https://en.wikibooks.org/wiki/LaTeX/Counters}}
+    
+    Nastavení a zobrazení čítače stránek na \verb|x|: 
+    \begin{verbatim}	
+	\setcounter{page}{x}
+	\end{verbatim}
+	
+	Nastavení a zobrazení čítače stránek od jedné:
+    \begin{verbatim}
+	\setcounter{page}{1}
+	\end{verbatim}
+
+	Nastavení způsob sazby čísla stránky:
+    \begin{verbatim}
+	\pagenumbering{styl}
+	\end{verbatim}
+    
+    Nastavení pozice na stránce:
+    \begin{verbatim}
+	\pagestyle{styl}
+	\end{verbatim}
+
 \end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
+    10. Odrážky, číslované seznamy (1)
+    
+    \begin{multicols}{2}
+    Odrážky
+    \begin{verbatim}
+		\begin{itemize}
+			\item první odrážka
+			\item druhá odrážka
+		\end{itemize}
+    \end{verbatim}	
+    
+    \begin{itemize}
+		\item první odrážka
+		\item druhá odrážka
+	\end{itemize}
+    
+    Číslované seznamy
+    \begin{verbatim}
+		\begin{enumerate}
+			\item první položka
+			\item druhá položka
+		\end{enumerate}
+    \end{verbatim}
+		\begin{enumerate}
+			\item první položka
+			\item druhá položka
+		\end{enumerate}
+
+    \end{multicols}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
+    10. Odrážky, číslované seznamy (2)
+        
+    Číslované seznamy -- zanořování
+    \begin{verbatim}
+		\begin{enumerate}[a)]
+			\item první položka
+			\begin{enumerate}
+				\item první pod položka
+				\item druhá pod položka
+			\end{enumerate}			
+			\item druhá položka
+		\end{enumerate}
+    \end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
+    10. Odrážky, číslované seznamy (3)
+    
+    Číslované seznamy -- zanořování
+		\begin{enumerate}
+			\item první položka
+			\begin{enumerate}
+				\item první pod položka
+				\item druhá pod položka
+			\end{enumerate}			
+			\item druhá položka
+		\end{enumerate}
+		
+	Změna čísel na písmena: \verb|\begin{enumerate}[a)]|	
+		\begin{enumerate}[a)]
+			\item první položka
+			\begin{enumerate}
+				\item první pod položka
+				\item druhá pod položka
+			\end{enumerate}			
+			\item druhá položka
+		\end{enumerate}		
+
+\end{frame}
+
 
 
 
 \end{document}
+
+	\begin{multicols}{2}
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt mollis nisl, in finibus dolor accumsan ultricies. Integer consectetur purus eu lacus sodales consectetur. Donec fermentum lacinia mi, ac malesuada nisi convallis in. Phasellus aliquam quam elit, hendrerit feugiat nunc pulvinar non.
+	\end{multicols}
