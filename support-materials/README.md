@@ -1,7 +1,7 @@
 # ITY - licence
 
-Všechny materiály zaèínající na ITY... jsou pøevzaty z kurzu Typografie a publikování, kterı je souèástí volitelnıch pøedmìtù na FIT VUT a garantem je pan prodìkan Ing. Bohuslav Køena, Ph.D. Tímto bych mu chtìl podìkovat za souhlas s moností publikovat jeho materiály.
+VÅ¡echny materiÃ¡ly zaÄÃ­najÃ­cÃ­ na 'ITY...' jsou pÅ™evzaty z kurzu Typografie a publikovÃ¡nÃ­, kterÃ½ je souÄÃ¡stÃ­ volitelnÃ½ch pÅ™edmÄ›tÅ¯ na FIT VUT Brno a garantem je pan prodÄ›kan Ing. Bohuslav KÅ™ena, Ph.D. TÃ­mto bych mu chtÄ›l podÄ›kovat za souhlas s moÅ¾nostÃ­ publikovat jeho materiÃ¡ly.
 
-V rámci tìchto materiálù mùete nalézt spoustu zajímavıch informací pro sazbu v LaTeXu.
+V rÃ¡mci tÄ›chto materiÃ¡lÅ¯ mÅ¯Å¾ete nalÃ©zt spoustu zajÃ­mavÃ½ch informacÃ­ pro sazbu v LaTeXu.
 
-Jaroslav Páral
+Jaroslav PÃ¡ral

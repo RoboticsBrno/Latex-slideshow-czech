@@ -6,11 +6,17 @@ Why and how work in Tex. Slideshow is in Czech language
 
 **Organizují:**
 
-[JCMM - Jihomoravské centrum pro mezinárodní mobilitu](www.jcmm.cz)
+[JCMM - Jihomoravské centrum pro mezinárodní mobilitu](http://www.jcmm.cz)
 
-[Pobočka Robotárna - Dům dětí a mládeže Brno, Helceletova](www.helceletka.cz/robotarna)
+[Pobočka Robotárna - Dům dětí a mládeže Brno, Helceletova](http://www.helceletka.cz/robotarna)
 
-[RobotikaBrno](www.robotikabrno.cz)
+[RobotikaBrno](http://www.robotikabrno.cz)
+
+## Materiály:
+### [Prezentace](latex-slideshow-czech.pdf)
+### [Ukázkové kódy](/example/example.tex)
+### [Podpůrné materiály](/support-materials)
+### [Záznam z přednášky](https://youtu.be/OkPP2aOMVvw)
 
 ## Osnova přednášky:
 1. **Úvod**
