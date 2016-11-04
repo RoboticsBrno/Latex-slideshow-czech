@@ -16,6 +16,7 @@ Why and how work in Tex. Slideshow is in Czech language
 ### [Prezentace](latex-slideshow-czech.pdf)
 ### [Ukázkové kódy](/example/example.tex)
 ### [Podpůrné materiály](/support-materials)
+### [Záznam z přednášky](https://youtu.be/OkPP2aOMVvw)
 
 ## Osnova přednášky:
 1. **Úvod**
