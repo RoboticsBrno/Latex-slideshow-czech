@@ -45,6 +45,7 @@
 \setbeamercolor*{item}{fg=black}
 \setbeamertemplate{enumerate item}[default]
 
+
 \author{J. Páral, V. Boček}
 \institute[paral@robotikabrno.cz]{Pobočka Robotárna - Dům dětí a mládeže Brno, Helceletova\\[0.5cm]}
 \title{Jak a proč používat \LaTeX}
@@ -135,7 +136,6 @@
 \begin{frame}[fragile]
     \frametitle{Jak na to}
 	Instalace Linux:
-	\pause
 	\vspace{5mm}
 	\begin{lstlisting}[language=bash]
 cfdisk /dev/hda && mkfs.xfs /dev/hda1 && mount /dev/hda1 /mnt/gentoo/ && chroot /mnt/gentoo/ && env-update && . /etc/profile && emerge sync && cd /usr/portage && scripts/bootsrap.sh && emerge system && emerge vim && vi /etc/fstab && emerge gentoo-dev-sources && cd /usr/src/linux && make menuconfig && make install modules_install && emerge gnome mozilla-firefox openoffice && emerge grub && cp /boot/grub/grub.conf.sample /boot/grub/grub.conf && vi /boot/grub/grub.conf && grub && init 6
@@ -153,14 +153,12 @@ cfdisk /dev/hda && mkfs.xfs /dev/hda1 && mount /dev/hda1 /mnt/gentoo/ && chroot 
 apt-get install (*@\textcolor{blue}{texlive texlive-lang-czechslovak texmaker}@*)
 	\end{lstlisting}
 
-	\pause
 	\begin{lstlisting}[language=bash]
 # Fedora
 yum install (*@\textcolor{blue}{texlive-scheme-full texmaker}@*)
 	\end{lstlisting}
 	\vspace{10mm}
 
-	\pause
 	Překládáme příkazy
 	\verb|pdflatex JMENO_SOUBORU.tex|
 	
@@ -174,13 +172,20 @@ yum install (*@\textcolor{blue}{texlive-scheme-full texmaker}@*)
 	\begin{lstlisting}[language=bettertex]
 \documentclass[12pt]{article}
 \begin{document}
-Hello world!
+% za procentem muzete psat komentar
+% LaTeX vse za procentem ignoruje
+Hello world! 
 $a^2+b^2=c^2$ %math mode
 \end{document}
 	\end{lstlisting}
 	\end{center}
 	Pozor na češtinu!
-	\verb|\usepackage[utf8]{inputenc}|
+
+	\begin{lstlisting}[language=bettertex]
+% pred \begin{document} je potreba vlozit
+\usepackage[utf8]{inputenc}	
+	\end{lstlisting}	
+	
 \end{frame}
 
 \begin{frame}[fragile]
@@ -194,7 +199,7 @@ $a^2+b^2=c^2$ %math mode
 			\item Citace
 			\item Poznámky 
 			\item Odkazy v textu
-			\item Vkládání vzorců
+			\item Vkládání matematiky
 			\item Číslování stran	
 			\item Odrážky, číslované seznamy
 			\item Sloupce
@@ -228,7 +233,7 @@ $a^2+b^2=c^2$ %math mode
 \begin{lstlisting}[language=bettertex]
   % popis/ukazka
   \titulek[ text do obsahu ]{ nadpis }
-  \titulek*{ nadpis } necislovany nadpis
+  \titulek*{ nadpis } % necislovany nadpis
 \end{lstlisting}
 
     \begin{lstlisting}[language=bettertex]
@@ -250,41 +255,37 @@ $a^2+b^2=c^2$ %math mode
     \end{lstlisting}	    
 
 	\vfill
-	\textit{Pozor, většinou je potřeba přeložit dokument dvakrát, pro zobrazení změn v obsahu. Nebo lze automatický volat překladač dvakrát.}
+	\textit{Pozor, většinou je potřeba přeložit dokument dvakrát, pro zobrazení změn v obsahu. Lze také překladač volat vždy dvakrát (lze nastavit v Texmakeru)}
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
     \framesubtitle{4. Seznamy obrázků, vzorců, tabulek}
 	
-	Platí to samé jako pro obsah. 
+	Platí to samé jako pro obsah. Většinou je třeba překládat provést dvakrát.
 
     \begin{lstlisting}[language=bettertex]
-  \listoffigures %seznam obrazku
-  \listoftables %seznam tabulek
+  \listoffigures % seznam obrazku
+  \listoftables % seznam tabulek
     \end{lstlisting}
-
-	\vfill
-	\textit{Pozor, většinou je potřeba přeložit dokument dvakrát, pro zobrazení změn v obsahu. Lze také překladač volat vždy dvakrát (lze nastavit v Texmakeru) n.}
-    	       
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    \framesubtitle{5. Citace}
+    \framesubtitle{5. Citace
+    	\footnote{\href{https://github.com/RoboticsBrno/Latex-slideshow-czech/blob/master/support-materials/}{support-materials/ITY5 - Bibliografické citace (BiBTeX, ISO 690).pdf}}    
+    }
 	
 	Odkaz na citaci
     \begin{lstlisting}[language=bettertex]
-  \cite{jmeno_odkazu}
+  \cite{jmeno_citace}
     \end{lstlisting}
 		
 	
 	Vytvořit citaci
 	\begin{enumerate}[a)]
-		\item pomocí prostředí \textit{thebibliography} 
-			
-		\item nástrojem \hologo{BibTeX}
-		
+		\item pomocí prostředí \textit{thebibliography} 			
+		\item nástrojem \hologo{BibTeX}\footnote{\url{http://www.fit.vutbr.cz/~martinek/latex/bibtex.html}}
 	\end{enumerate}
 
 	\vfill
@@ -308,19 +309,28 @@ $a^2+b^2=c^2$ %math mode
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    \framesubtitle{7. Odkazy v textu}
+    \framesubtitle{7. Odkazy v textu\footnote{\url{https://en.wikibooks.org/wiki/LaTeX/Hyperlinks}}
+    
+    }
 	
 	\vfill
-    \begin{lstlisting}[language=bettertex]
-  %identifikuje objekt
-  \label{jmeno_odkazu}
+	\begin{lstlisting}[language=bettertex]
+  % identifikuje objekt
+  \label{jmeno_objektu}
 
-  %odkaz na cislo objektu
-  \ref{cislo_odkazu}
+  % odkaz na cislo objektu
+  \ref{jmeno_objektu}
 
-  %odkaz na cislo stranky s objektem
-  \pageref{cislo_stranky}
-    \end{lstlisting}
+  % odkaz na cislo stranky s objektem
+  \pageref{jmeno_objektu}
+  
+  % klikatelna webova adresa
+  \url{https://vase_url_adresa.cz}
+  
+  % klikatelny text na webovou stranku
+  \href{http://www.robotikabrno.cz}{RobotikaBrno}
+    \end{lstlisting}   
+    
 	\vfill
 \end{frame}
 
@@ -328,13 +338,13 @@ $a^2+b^2=c^2$ %math mode
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    \framesubtitle{8. Vkládání vzorců (1)}
+    \framesubtitle{8. Vkládání matematiky (1)}
 
 	\LaTeX{\lower .5ex\hbox {U}} je nejmocnější nástroj na práci se vzorci.	
 
-    \begin{lstlisting}[language=bettertex]
+	\begin{lstlisting}[language=bettertex]
   $a^2+b^2=c^2$ 
-  % $ - pro vkladani do textu
+  % $ - pro vkladani matematiky primo do textu
 	\end{lstlisting}
 
 	\vfill
@@ -344,6 +354,7 @@ $a^2+b^2=c^2$ %math mode
 	\vfill
 
     \begin{lstlisting}[language=bettertex]
+  % samostatna necislovana rovnice
   \begin{equation*}
   \lim_{x \to \infty}\frac{\sin^2 x + 
   \cos^2 x}{4} = y \nonumber
@@ -355,22 +366,30 @@ $a^2+b^2=c^2$ %math mode
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    \framesubtitle{8. Vkládání vzorců (2)}
-	
+    \framesubtitle{8. Vkládání matematiky (2)}
+	Nečíslovaná rovnice:
 	\begin{equation*}
 	\lim_{x \to \infty}\frac{\sin^2 x + \cos^2 x}{4} = y \nonumber
 	\end{equation*}	
 	
-	Číslované vzorce \verb|\begin{equation}|:\\
-	\begin{equation*}
-		\int_a^b f(x) \mathrm{d}x = 
-		-\int_b^a f(x) \mathrm{d}x 
-	\end{equation*}
+	Číslovaná rovnice:
+	\begin{equation}
+	\int_a^b f(x) \mathrm{d}x = -\int_b^a f(x) \mathrm{d}x 
+	\end{equation}
+	
+	    \begin{lstlisting}[language=bettertex]
+ \begin{equation}
+ \int_a^b f(x)\mathrm{d}x = -\int_b^a f(x)\mathrm{d}x 
+ \end{equation}
+    \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Výhody \LaTeX{\lower .5ex\hbox {U}}}
-    \framesubtitle{9. Číslování stran \footnote{\url{https://en.wikibooks.org/wiki/LaTeX/Counters}}}
+    \framesubtitle{9. Číslování stran 
+    	\footnote{\href{https://github.com/RoboticsBrno/Latex-slideshow-czech/blob/master/support-materials/}{support-materials/ITY3 - Strukturování dokumentů...}}
+    	\footnote{\url{https://en.wikibooks.org/wiki/LaTeX/Counters}}
+    }
 
     Nastavení a zobrazení čítače stránek na \verb|x|: 
     \begin{lstlisting}[language=bettertex]
@@ -522,12 +541,15 @@ $a^2+b^2=c^2$ %math mode
   \end{tabular}
   \caption{Triathlon results}
 \end{table}    
-	\end{lstlisting}	
+	\end{lstlisting}
+	
+\srctext{Zdroj tabulky: \url{https://cs.sharelatex.com/blog/2013/08/14/beamer-series-pt2.html}}
+		
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{"Slabiny"}
-    2. Tabulky (2)
+    \framesubtitle{2. Tabulky (2)}
     
 	\begin{itemize}
 		\item jednoduché tabulky lze dělat ručně
@@ -547,7 +569,6 @@ Sarah H         & 9:22  & 21:10 & 24:03 & 54:35
 \caption{Triathlon results}
 \end{table}    
 
-\srctext{Zdroj tabulky: \url{https://cs.sharelatex.com/blog/2013/08/14/beamer-series-pt2.html}}
 
 \end{frame}
 
@@ -569,15 +590,14 @@ Sarah H         & 9:22  & 21:10 & 24:03 & 54:35
     	\item krátká prezentace s několika slajdy
     	\item velké množství obrázků
     \end{itemize}
+    Dobrý grafický styl pro prezentaci je \href{https://cs.sharelatex.com/blog/2013/08/14/beamer-series-pt2.html}{Beamer}.
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{A co dál?} % \LaTeX{\lower .5ex\hbox {U}}
+    \frametitle{A co dál?} % \LaTeX{\lower .5ex\hbox {U}}    
     
-    
-    Kdy použít:
     \begin{itemize}
-    	\item \LaTeX{ }lze verzovat\footnote{\href{GitHub}{\url{https://github.com}}}
+    	\item \LaTeX{ }lze verzovat\footnote{\url{https://github.com}}
     	\item Vyzkoušejte Pandoc\footnote{\url{http://pandoc.org/}} (konvertor dokumentů)
     	\item \LaTeX{ }jde dobře kombinovat s programováním
 		\begin{itemize}
@@ -590,6 +610,27 @@ Sarah H         & 9:22  & 21:10 & 24:03 & 54:35
 
 
 \begin{frame}[fragile]
+    \frametitle{A co dál?} % \LaTeX{\lower .5ex\hbox {U}}
+    
+    Zajímavé odkazy:
+    \begin{itemize}
+    	\item \href{http://www.fit.vutbr.cz/~martinek/latex/index.html#02}{LaTEXové speciality}
+    	\item \href{http://ftp.cvut.cz/tex-archive/macros/latex/contrib/booktabs/booktabs.pdf}{Pěknější tabulky pomocí Booktabs}
+    	\item \href{http://detexify.kirelabs.org/classify.html}{Nevíte jak vysázet nějaký znak - namalujte jej :-)}
+     	\item \href{https://www.overleaf.com/latex/examples/tikz-flowchart-of-an-epidemiology-study/hdpqksvwkqdm#.WBt1UujhCM9}{Bloková schemata s balíkem TikZ}
+     	\item \href{http://www.texample.net/tikz/examples/}{Zajímavá infografika s TikZ}	   
+     	\item \href{https://www.overleaf.com/}{Webový \LaTeX{}překladač}	   
+     	\item \href{http://www.zinktypografie.nl/latex.php?lang=en}{Kde je \LaTeX{}lepší než Word}	   
+     	\item \href{https://www.youtube.com/user/ShareLaTeX/videos}{Zajímavé video návody}	
+     	\item Jak tvořit pěkné prezentace: 
+     		\href{https://designshack.net/articles/graphics/how-to-design-a-professional-powerpoint-presentation/}{odkaz 1,}
+     		\href{https://www.proofhq.com/blog-marketing/10-tips-for-designing-presentations-that-dont-suck-pt-1-007623/}{odkaz 2}
+     	 	    	
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
 	\vfill
     \begin{center}
         {\huge </latex>}
@@ -600,8 +641,29 @@ Sarah H         & 9:22  & 21:10 & 24:03 & 54:35
 	\vfill
 \end{frame}
 
+\begin{frame}[fragile]
+	\vfill
+    \begin{center}
+        {\huge Děkujeme za pozornost}
+
+	\begin{figure}[H]
+        \includegraphics[width=190px]{img/jcmm-logotype-positive-orez.png}
+	\end{figure}
+
+	\begin{figure}[H]
+        \includegraphics[width=190px]{img/robotarna_napis.jpg}
+	\end{figure}
+
+		
+        {\huge \href{www.RobotikaBrno.cz}{www.robotikabrno.cz}}
+
+	\end{center}
+	\vfill
+\end{frame}
+
 
 \end{document}
+
 
 %---------------------------------------------------------------------
 
